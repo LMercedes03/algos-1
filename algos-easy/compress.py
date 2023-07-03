@@ -13,13 +13,17 @@
 
 
 def compress(s):
-    pass # TODO:
+    compress_word = ""
 
-
+    for char in s:
+        count = s.count(char)
+        compress_word += str(count) + char
+    return compress_word
 
 
 # TEST CASES
-compress('ccaaatsss') # -> '2c3at3s'
+result = compress('ccaaatsss') # -> '2c3at3s'
+print(result)
 # compress('ssssbbz') # -> '4s2bz'
 # compress('ppoppppp') # -> '2po5p'
 # compress('nnneeeeeeeeeeeezz') # -> '3n12e2z'
