@@ -13,12 +13,25 @@
 
 
 def compress(s):
-    compress_word = ""
+    compressed = ""
+    count = 1
+    n = len(s)
 
-    for char in s:
-        count = s.count(char)
-        compress_word += str(count) + char
-    return compress_word
+    for i in range(1, n):
+        if s[i] == s[i - 1]:
+            count += 1
+        else:
+            if count > 1:
+                compressed += str(count)
+            compressed += s[i - 1]
+            count = 1
+
+    # Append the compressed representation of the last character(s) to the result
+    if count > 1:
+        compressed += str(count)
+    compressed += s[-1]
+
+    return compressed
 
 
 # TEST CASES
@@ -27,4 +40,5 @@ print(result)
 # compress('ssssbbz') # -> '4s2bz'
 # compress('ppoppppp') # -> '2po5p'
 # compress('nnneeeeeeeeeeeezz') # -> '3n12e2z'
-# compress('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy');  # -> '127y'
+result = compress('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy');  # -> '127y'
+print(result)
